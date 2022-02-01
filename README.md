@@ -1,5 +1,8 @@
 # Otomatis
 
-Setup and automation
+Repository containing all my setup automations. Requires `docker`.
 
-Requires `docker`
+Setup available for:
+* Mac for development (TODO)
+* Ubuntu for development (IN PROGRESS)
+* Ubuntu for server (TODO)

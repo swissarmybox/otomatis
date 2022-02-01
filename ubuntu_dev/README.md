@@ -4,7 +4,24 @@ This directory is for playing around with setting up an Ubuntu local dev machine
 
 ## Development
 
-Use the provided `Dockerfile` to play around and test changes. There is a non root user in the container, username is `jane` and password is `jane_password`. To run the `docker` container, make sure you are in this directory:
+Use the provided `Dockerfile` to play around and test changes. There is a non root user in the container, username is `jane` and password is `jane_password`. To run the `docker` container, make sure you are in this directory.
+
+Make your changes to this repository, without committing at first. Test the changes:
+
+* Run the container with mount
+
+  ```sh
+  make run-with-mount
+  ```
+
+* To test the playbook but bypassing git
+
+  ```sh
+  cd ~
+  ansible-playbook --ask-become-pass setup/setup.yml
+  ```
+
+Once you are confident that the changes are working. Commit, and push the changes, then test the actual workflow.
 
 * Build docker container
 
@@ -23,7 +40,7 @@ Use the provided `Dockerfile` to play around and test changes. There is a non ro
   ```sh
   cd ~
   git clone https://github.com/swissarmybox/otomatis.git
-  ansible-playbook --ask-become-pass otomatis/local/ubuntu_dev/setup/setup.yml
+  ansible-playbook --ask-become-pass otomatis/ubuntu_dev/setup/setup.yml
   ```
 
   Use `jane_password` as the password.
@@ -46,5 +63,5 @@ Setup an Ubuntu machine from scratch. Please remember security best practices (T
   ```sh
   cd ~
   git clone https://github.com/swissarmybox/otomatis.git
-  ansible-playbook --ask-become-pass otomatis/local/ubuntu_dev/setup/setup.yml
+  ansible-playbook --ask-become-pass otomatis/ubuntu_dev/setup/setup.yml
   ```
