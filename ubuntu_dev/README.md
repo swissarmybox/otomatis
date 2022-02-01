@@ -21,6 +21,8 @@ Make your changes to this repository, without committing at first. Test the chan
   ansible-playbook --ask-become-pass setup/setup.yml
   ```
 
+  Use `jane_password` as the password.
+
 Once you are confident that the changes are working. Commit, and push the changes, then test the actual workflow.
 
 * Build docker container
