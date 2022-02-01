@@ -1,0 +1,36 @@
+- hosts: localhost
+  tasks:
+  - name: Install vim
+    become: yes
+    apt:
+      name: vim
+
+  - name: Install tmux
+    become: yes
+    apt:
+      name: tmux
+
+  - name: Add fish repository
+    become: yes
+    ansible.builtin.apt_repository:
+      repo: ppa:fish-shell/release-3
+
+  - name: Install fish
+    become: yes
+    apt:
+      name: fish
+      update_cache: yes
+
+  - name: Change shell to fish
+    become: yes
+    shell: chsh -s `which fish` jane
+
+  - name: Install stow
+    become: yes
+    apt:
+      name: stow
+
+  # - shell: echo 'test'
+  #   register: foo
+  # - debug: msg="the echo was {{ foo.stdout }}"
+
