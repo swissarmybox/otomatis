@@ -4,4 +4,4 @@
 
 - name: Install nodejs
   ansible.builtin.shell:
-    cmd: volta install node
+    cmd: source ~/.config/fish/config.fish && volta install node
