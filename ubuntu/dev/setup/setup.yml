@@ -2,11 +2,11 @@
   vars:
     user: "{{ ansible_user_id }}"
   tasks:
-  - include: ../../_tasks/stow.yml
-  - include: ../../_tasks/vim.yml
-  - include: ../../_tasks/tmux.yml
-  - include: ../../_tasks/fish.yml
-  - include: ../../_tasks/dotfiles.yml
+  - import_tasks: ../../_tasks/stow.yml
+  - import_tasks: ../../_tasks/vim.yml
+  - import_tasks: ../../_tasks/tmux.yml
+  - import_tasks: ../../_tasks/fish.yml
+  - import_tasks: ../../_tasks/dotfiles.yml
 
   # - shell: echo 'test'
   #   register: foo

@@ -1,17 +1,14 @@
 - name: Setup dotfiles vim
   ansible.builtin.shell:
     chdir: ~/.otomatis/ubuntu/dev/dotfiles
-    cmd: stow -D ~ vim
     cmd: stow -t ~ vim
 
 - name: Setup dotfiles tmux
   ansible.builtin.shell:
     chdir: ~/.otomatis/ubuntu/dev/dotfiles
-    cmd: stow -D ~ tmux
     cmd: stow -t ~ tmux
 
 - name: Setup dotfiles fish
   ansible.builtin.shell:
     chdir: ~/.otomatis/ubuntu/dev/dotfiles
-    cmd: stow -D ~ fish
     cmd: stow -t ~ fish
