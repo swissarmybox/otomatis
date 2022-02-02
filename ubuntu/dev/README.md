@@ -1,4 +1,4 @@
-# Local Ubuntu
+# Ubuntu for Development
 
 This directory is for playing around with setting up an Ubuntu local dev machine.
 
@@ -49,7 +49,7 @@ Once you are confident that the changes are working. Commit, and push the change
 
 ## Production
 
-Setup an Ubuntu machine from scratch. Please remember security best practices (TODO: needs to write a playbook for automating this).
+Setup an Ubuntu machine from scratch. Please remember security best practices.
 
 * Install `ansible` and `git`
 
@@ -67,3 +67,8 @@ Setup an Ubuntu machine from scratch. Please remember security best practices (T
   git clone https://github.com/swissarmybox/otomatis.git .otomatis
   ansible-playbook --ask-become-pass .otomatis/ubuntu/dev/setup/setup.yml
   ```
+
+## TODO
+
+* Automate SSH key to Github
+* Implement security best practices
