@@ -43,7 +43,7 @@
 
   - name: Change shell to fish
     become: yes
-    shell: chsh -s `which fish` jane
+    shell: chsh -s `which fish` `whoami`
 
   # - shell: echo 'test'
   #   register: foo

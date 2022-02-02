@@ -64,6 +64,6 @@ Setup an Ubuntu machine from scratch. Please remember security best practices (T
 
   ```sh
   cd ~
-  git clone https://github.com/swissarmybox/otomatis.git
-  ansible-playbook --ask-become-pass otomatis/ubuntu_dev/setup/setup.yml
+  git clone https://github.com/swissarmybox/otomatis.git .otomatis
+  ansible-playbook --ask-become-pass .otomatis/ubuntu_dev/setup/setup.yml
   ```
