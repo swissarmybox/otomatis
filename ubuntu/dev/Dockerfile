@@ -10,12 +10,12 @@ RUN apt update && \
     apt install --yes ansible
 
 # Create non root user
-ARG USER=jane
-ARG PASS=jane_password
+ARG USER=test
+ARG PASS=testpwd
 
 RUN useradd -m $USER && \
     echo "$USER:$PASS" | chpasswd && \
-    usermod -aG sudo jane
+    usermod -aG sudo test
 
-USER jane
-WORKDIR /home/jane
+USER test
+WORKDIR /home/test

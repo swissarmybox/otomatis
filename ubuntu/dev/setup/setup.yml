@@ -1,0 +1,13 @@
+- hosts: localhost
+  vars:
+    user: "{{ ansible_user_id }}"
+  tasks:
+  - include: ../../_tasks/stow.yml
+  - include: ../../_tasks/vim.yml
+  - include: ../../_tasks/tmux.yml
+  - include: ../../_tasks/fish.yml
+  - include: ../../_tasks/dotfiles.yml
+
+  # - shell: echo 'test'
+  #   register: foo
+  # - debug: msg="the echo was {{ foo.stdout }}"

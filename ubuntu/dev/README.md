@@ -4,7 +4,7 @@ This directory is for playing around with setting up an Ubuntu local dev machine
 
 ## Development
 
-Use the provided `Dockerfile` to play around and test changes. There is a non root user in the container, username is `jane` and password is `jane_password`. To run the `docker` container, make sure you are in this directory.
+Use the provided `Dockerfile` to play around and test changes. There is a non root user in the container, username is `test` and password is `testpwd`. To run the `docker` container, make sure you are in this directory.
 
 Make your changes to this repository, without committing at first. Test the changes:
 
@@ -18,10 +18,10 @@ Make your changes to this repository, without committing at first. Test the chan
 
   ```sh
   cd ~
-  ansible-playbook --ask-become-pass .otomatis/ubuntu_dev/setup/setup.yml
+  ansible-playbook --ask-become-pass .otomatis/ubuntu/dev/setup/setup.yml
   ```
 
-  Use `jane_password` as the password.
+  Use `testpwd` as the password.
 
 Once you are confident that the changes are working. Commit, and push the changes, then test the actual workflow.
 
@@ -42,10 +42,10 @@ Once you are confident that the changes are working. Commit, and push the change
   ```sh
   cd ~
   git clone https://github.com/swissarmybox/otomatis.git .otomatis
-  ansible-playbook --ask-become-pass .otomatis/ubuntu_dev/setup/setup.yml
+  ansible-playbook --ask-become-pass .otomatis/ubuntu/dev/setup/setup.yml
   ```
 
-  Use `jane_password` as the password.
+  Use `testpwd` as the password.
 
 ## Production
 
@@ -65,5 +65,5 @@ Setup an Ubuntu machine from scratch. Please remember security best practices (T
   ```sh
   cd ~
   git clone https://github.com/swissarmybox/otomatis.git .otomatis
-  ansible-playbook --ask-become-pass .otomatis/ubuntu_dev/setup/setup.yml
+  ansible-playbook --ask-become-pass .otomatis/ubuntu/dev/setup/setup.yml
   ```
