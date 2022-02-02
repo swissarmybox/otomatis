@@ -9,7 +9,7 @@
   - import_tasks: ../../_tasks/dotfiles.yml
 
   # Comment out if this doesn't work on Docker
-  - import_tasks: ../../_tasks/volta.yml
+  - import_tasks: ../../_tasks/nodejs.yml
 
   # - shell: echo 'test'
   #   register: foo
