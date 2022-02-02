@@ -1,3 +1,7 @@
 - name: Install volta
   ansible.builtin.shell:
     cmd: curl https://get.volta.sh | /usr/bin/bash
+
+- name: Install nodejs
+  ansible.builtin.shell:
+    cmd: .volta/bin/volta install node
