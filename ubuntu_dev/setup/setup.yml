@@ -1,4 +1,6 @@
 - hosts: localhost
+  vars:
+    user: "{{ ansible_user_id }}"
   tasks:
   - name: Install stow
     become: yes
@@ -43,9 +45,10 @@
 
   - name: Change shell to fish
     become: yes
-    shell: chsh -s `which fish` `whoami`
+    user:
+      name: "{{ user }}"
+      shell: /usr/bin/fish
 
   # - shell: echo 'test'
   #   register: foo
   # - debug: msg="the echo was {{ foo.stdout }}"
-
