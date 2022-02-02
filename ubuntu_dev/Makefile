@@ -7,4 +7,4 @@ run:
 	docker run -it ubuntu-dev
 
 run-with-mount:
-	docker run -it -v ${PWD}/setup:/home/jane/setup ubuntu-dev
+	docker run -it -v ${PWD}/..:/home/jane/.otomatis ubuntu-dev

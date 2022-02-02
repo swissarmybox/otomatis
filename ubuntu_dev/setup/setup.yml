@@ -1,14 +1,29 @@
 - hosts: localhost
   tasks:
+  - name: Install stow
+    become: yes
+    apt:
+      name: stow
+
   - name: Install vim
     become: yes
     apt:
       name: vim
 
+  - name: Setup dotfiles vim
+    ansible.builtin.shell:
+      chdir: ~/.otomatis/ubuntu_dev/dotfiles
+      cmd: stow -t ~ vim
+
   - name: Install tmux
     become: yes
     apt:
       name: tmux
+
+  - name: Setup dotfiles tmux
+    ansible.builtin.shell:
+      chdir: ~/.otomatis/ubuntu_dev/dotfiles
+      cmd: stow -t ~ tmux
 
   - name: Add fish repository
     become: yes
@@ -21,14 +36,14 @@
       name: fish
       update_cache: yes
 
+  - name: Setup dotfiles fish
+    ansible.builtin.shell:
+      chdir: ~/.otomatis/ubuntu_dev/dotfiles
+      cmd: stow -t ~ fish
+
   - name: Change shell to fish
     become: yes
     shell: chsh -s `which fish` jane
-
-  - name: Install stow
-    become: yes
-    apt:
-      name: stow
 
   # - shell: echo 'test'
   #   register: foo

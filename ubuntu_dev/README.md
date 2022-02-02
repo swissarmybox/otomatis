@@ -18,7 +18,7 @@ Make your changes to this repository, without committing at first. Test the chan
 
   ```sh
   cd ~
-  ansible-playbook --ask-become-pass setup/setup.yml
+  ansible-playbook --ask-become-pass .otomatis/ubuntu_dev/setup/setup.yml
   ```
 
   Use `jane_password` as the password.
@@ -41,8 +41,8 @@ Once you are confident that the changes are working. Commit, and push the change
 
   ```sh
   cd ~
-  git clone https://github.com/swissarmybox/otomatis.git
-  ansible-playbook --ask-become-pass otomatis/ubuntu_dev/setup/setup.yml
+  git clone https://github.com/swissarmybox/otomatis.git .otomatis
+  ansible-playbook --ask-become-pass .otomatis/ubuntu_dev/setup/setup.yml
   ```
 
   Use `jane_password` as the password.
