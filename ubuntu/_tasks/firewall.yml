@@ -1,0 +1,18 @@
+- name: Install ufw
+  become: yes
+  apt:
+    name: ufw
+
+- name: Limit brute force ssh
+  become: yes
+  community.general.ufw:
+    rule: limit
+    port: ssh
+    proto: tcp
+
+- name: Allow all access to tcp port 80
+  become: yes
+  community.general.ufw:
+    rule: allow
+    port: '80'
+    proto: tcp

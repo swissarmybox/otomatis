@@ -1,0 +1,9 @@
+- name: Install unattended-upgrades
+  become: yes
+  apt:
+    name: unattended-upgrades
+
+- name: Setup unattended-upgrades
+  become: yes
+  ansible.builtin.shell:
+    cmd: dpkg-reconfigure -f noninteractive unattended-upgrades

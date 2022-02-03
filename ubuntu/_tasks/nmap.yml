@@ -1,0 +1,4 @@
+- name: Install nmap
+  become: yes
+  apt:
+    name: nmap

@@ -7,7 +7,6 @@
   become: yes
   apt:
     name: fish
-    update_cache: yes
 
 - name: Change shell to fish
   become: yes

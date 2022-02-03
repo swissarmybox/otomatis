@@ -86,7 +86,7 @@
    a. Install UFW
 
       ```sh
-      sudo apt install UFW
+      sudo apt install ufw
       ```
 
    b. Check Status
