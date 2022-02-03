@@ -1,4 +1,4 @@
-- name: Install tmux
+- name: tmux | install
   become: yes
   apt:
     name: tmux

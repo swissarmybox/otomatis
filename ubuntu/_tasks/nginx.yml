@@ -1,0 +1,11 @@
+- name: nginx | install
+  become: yes
+  apt:
+    name: nginx
+
+- name: nginx | allow http/https connections
+  become: yes
+  community.general.ufw:
+    rule: allow
+    name: 'Nginx Full'
+    state: enabled

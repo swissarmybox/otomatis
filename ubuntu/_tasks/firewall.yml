@@ -1,64 +1,41 @@
-- name: Install ufw
+- name: ufw | install
   become: yes
   apt:
     name: ufw
 
-- name: Reject every incoming
+- name: ufw | reject every incoming
   become: yes
   community.general.ufw:
     direction: incoming
     default: deny
 
-- name: Allow every outgoing
+- name: ufw | allow every outgoing
   become: yes
   community.general.ufw:
     direction: outgoing
     default: allow
 
-- name: Limit brute force ssh
+- name: ufw | limit brute force ssh
   become: yes
   community.general.ufw:
     rule: limit
     port: ssh
     proto: tcp
 
-- name: Limit brute force ssh
+- name: ufw | disable ping
+  become: yes
+  lineinfile: dest=/etc/ufw/before.rules regexp="ufw-before-input -p icmp --icmp-type {{ item }}" line="-A ufw-before-input -p icmp --icmp-type {{ item }} -j DROP" backup=yes
+  with_items:
+    - echo-request
+
+- name: ufw | disable ipv6 ping
+  become: yes
+  lineinfile: dest=/etc/ufw/before6.rules regexp="ufw6-before-input -p icmpv6 --icmpv6-type {{ item }}" line="-A ufw6-before-input -p icmpv6 --icmpv6-type {{ item }} -j DROP" backup=yes
+  with_items:
+    - echo-request
+  tags: ufw
+
+- name: ufw | enable
   become: yes
   community.general.ufw:
     state: enabled
-
-# - name: Allow all access to tcp port 80
-#   become: yes
-#   community.general.ufw:
-#     rule: allow
-#     port: '80'
-#     proto: tcp
-
-
-#         - name: UFW - Allow http/https connections
-#       ufw:
-#         rule: allow
-#         name: 'Nginx Full'
-
-
-          # - name: ufw | disable ping
-      # lineinfile: dest=/etc/ufw/before.rules regexp="icmp-type {{ item }}" line="-A ufw-before-input -p icmp --icmp-type {{ item }} -j DROP" backup=yes
-      # with_items:
-        # - destination-unreachable
-        # - source-quench
-        # - time-exceeded
-        # - parameter-problem
-        # - echo-request
-      # tags: ufw
-
-    # - name: ufw | disable ipv6 ping
-      # lineinfile: dest=/etc/ufw/before6.rules regexp="icmpv6-type {{ item }}" line="-A ufw6-before-input -p icmpv6 --icmpv6-type {{ item }} -j DROP" backup=yes
-      # with_items:
-        # - destination-unreachable
-        # - packet-too-big
-        # - time-exceeded
-        # - parameter-problem
-        # - echo-request
-      # tags: ufw
-
-

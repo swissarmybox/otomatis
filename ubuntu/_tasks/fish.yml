@@ -1,14 +1,14 @@
-- name: Add fish repository
+- name: fish | add repository
   become: yes
   ansible.builtin.apt_repository:
     repo: ppa:fish-shell/release-3
 
-- name: Install fish
+- name: fish | install
   become: yes
   apt:
     name: fish
 
-- name: Change shell to fish
+- name: fish | make as default shell
   become: yes
   user:
     name: "{{ user }}"
