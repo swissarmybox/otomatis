@@ -1,10 +1,14 @@
 # Ubuntu for Development
 
-This directory is for playing around with setting up an Ubuntu local dev machine.
+This directory is for playing around with setting up an Ubuntu local dev machine. This assumes that Ubuntu desktop is installed previously, and a new non-root user is already created.
 
 ## Development
 
 Use the provided `Dockerfile` to play around and test changes. There is a non root user in the container, username is `test` and password is `testpwd`. To run the `docker` container, make sure you are in this directory.
+
+Be advised that some items related tasks don't work on Docker:
+* volta
+* ufw
 
 Make your changes to this repository, without committing at first. Test the changes:
 

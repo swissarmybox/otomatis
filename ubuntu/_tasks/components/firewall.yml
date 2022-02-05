@@ -33,7 +33,6 @@
   lineinfile: dest=/etc/ufw/before6.rules regexp="ufw6-before-input -p icmpv6 --icmpv6-type {{ item }}" line="-A ufw6-before-input -p icmpv6 --icmpv6-type {{ item }} -j DROP" backup=yes
   with_items:
     - echo-request
-  tags: ufw
 
 - name: ufw | enable
   become: yes

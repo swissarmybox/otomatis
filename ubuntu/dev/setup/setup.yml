@@ -2,18 +2,8 @@
   vars:
     user: "{{ ansible_user_id }}"
   tasks:
-  - import_tasks: ../../_tasks/update.yml
-  - import_tasks: ../../_tasks/unattended-upgrades.yml
-  - import_tasks: ../../_tasks/vim.yml
-  - import_tasks: ../../_tasks/tmux.yml
-  - import_tasks: ../../_tasks/fish.yml
-  - import_tasks: ../../_tasks/nmap.yml
-  - import_tasks: ../../_tasks/stow.yml
-  - import_tasks: ../../_tasks/dotfiles.yml
-  # - import_tasks: ../../_tasks/nodejs.yml # Doesn't work on Docker
-  - import_tasks: ../../_tasks/firewall.yml
-  # - import_tasks: ../../_tasks/reboot.yml # Kills Docker container
-
-  # - shell: echo 'test'
-  #   register: foo
-  # - debug: msg="the echo was {{ foo.stdout }}"
+  - import_tasks: ../../_tasks/updates.yml
+  - import_tasks: ../../_tasks/security.yml
+  - import_tasks: ../../_tasks/triumvirate.yml
+  - import_tasks: ../../_tasks/tools.yml
+  - import_tasks: ../../_tasks/components/reboot.yml

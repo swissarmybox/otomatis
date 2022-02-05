@@ -1,0 +1,3 @@
+- name: nodejs | install
+  ansible.builtin.shell:
+    cmd: ~/.volta/bin/volta install node

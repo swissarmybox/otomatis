@@ -1,0 +1,2 @@
+- import_tasks: ./components/update.yml
+- import_tasks: ./components/unattended-upgrades.yml
