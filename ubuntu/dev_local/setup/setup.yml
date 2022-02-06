@@ -6,4 +6,3 @@
   - import_tasks: ../../_tasks/security.yml
   - import_tasks: ../../_tasks/triumvirate.yml
   - import_tasks: ../../_tasks/tools.yml
-  - import_tasks: ../../_tasks/cleanup.yml

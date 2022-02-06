@@ -1,10 +1,14 @@
 # Otomatis
 
-Repository containing all my setup automations. Requires `docker`.
+Repository containing all my setup automations.
 
+## Prerequisites
 
-Scenarios:
-* Setup Mac for development
-* Setup Ubuntu (localhost) for development
-* Setup Ubuntu (remote) for development
-* Setup Ubuntu (cloud server) for development
+* Docker
+* Ansible
+
+## Scenarios:
+* [ ] Setup Mac locally for development
+* [ ] Setup Ubuntu locally for development
+* [x] Setup Ubuntu remotely for development
+* [ ] Setup Ubuntu remotely for Nginx server

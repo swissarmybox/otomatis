@@ -1,8 +1,7 @@
-# Bare Minimum Server
-1. SSH using root
+# Ubuntu Notes
+## Security Checklist
 
-2. Updates
-
+1. Turn on automatic updates
    a. Update app
 
       ```sh
@@ -18,47 +17,7 @@
 
       Choose `Yes`
 
-2. User
-
-   a. Create a new user
-
-      ```sh
-      adduser test
-      ```
-
-      Input a password, and just choose the default for every question
-
-  b. Put user to sudo group
-
-     ```sh
-     usermod -aG sudo test
-     ```
-
-3. Logout server
-
-4. Use SSH certificate
-
-   a. Create a new SSH keygen if there is none
-      
-      ```sh
-      ssh-keygen -b 4096
-      ```
-
-      Put it on the default location, which is in `/home/<username>/.ssh/id_rsa`
-
-   b. Copy the ssh to the server
-
-      ```sh
-      ssh-copy-id <server-username>@<server-ip-address>
-      ```
-
-   c. Verify that we can login to the server without password
-
-      ```sh
-      ssh <server-username>@<server-ip-address>
-      ```
-
-5. Disable password
+2. Disable root, password and ipv6 login
 
    a. Edit `sshd_config`
 
@@ -81,7 +40,7 @@
      sudo systemctl restart sshd
      ```
 
-6. Configure firewalls
+3. Configure firewalls
 
    a. Install UFW
 
@@ -120,11 +79,87 @@
       sudo ufw reload
       ```
 
-7. Reboot server
+4. Reboot server
 
    ```sh
    sudo reboot
    ```
+
+## Miscellaneous
+### Systemd Commands
+
+* To list all services
+
+  ```sh
+  systemctl list-units --type=service
+  ```
+
+* Stop a service
+
+  ```sh
+  systemctl stop <service-name>
+  ```
+
+* Start a service
+
+  ```sh
+  systemctl start <service-name>
+  ```
+
+* Restart a service
+
+  ```sh
+  systemctl restart <service-name>
+  ```
+
+* Reload a service (useful if just making configuration service without killing the service)
+
+  ```sh
+  systemctl reload <service-name>
+  ```
+
+* Disable when server boots
+
+  ```sh
+  systemctl disable <service-name>
+  ```
+
+* Enable when server boots
+
+  ```sh
+  systemctl enable <service-name>
+  ```
+
+### SSH Keys
+
+* Create a new SSH keygen
+  
+  ```sh
+  ssh-keygen -b 4096
+  ```
+
+  This will put it on the default location, which is in `/home/<username>/.ssh/id_rsa`
+
+* Copy the ssh to the server
+
+  ```sh
+  ssh-copy-id <server-username>@<server-ip-address>
+  ```
+
+* Verify that we can login to the server without password
+
+  ```sh
+  ssh <server-username>@<server-ip-address>
+  ```
+
+### Network Commands
+
+* Check CNAME and A Records
+
+  ```sh
+  dig mydomain.com
+  ```
+
 
 
 # Enable Nginx
@@ -187,53 +222,6 @@
    ```
 
 
-# Systemctl Commands
-
-1. To list all services
-
-   ```sh
-   systemctl list-units --type=service
-   ```
-
-2. Stop a service
-
-   ```sh
-   systemctl stop <service-name>
-   ```
-
-3. Start a service
-
-   ```sh
-   systemctl start <service-name>
-   ```
-
-4. Restart a service
-
-   ```sh
-   systemctl restart <service-name>
-   ```
-
-5. Reload a service (useful if just making configuration service without killing the service)
-
-   ```sh
-   systemctl reload <service-name>
-   ```
-
-6. Disable when server boots
-
-   ```sh
-   systemctl disable <service-name>
-   ```
-
-7. Enable when server boots
-
-   ```sh
-   systemctl enable <service-name>
-   ```
-
-# Important commands
-
-`dig mydomain.com` to check CNAME and A records
 
 # Nginx Notes
 
@@ -252,3 +240,20 @@ location / {
 # Adding SSL to Nginx
 
 Go to letsencrypt.com to get free SSL certificate
+
+2. User
+
+   a. Create a new user
+
+      ```sh
+      adduser test
+      ```
+
+      Input a password, and just choose the default for every question
+
+  b. Put user to sudo group
+
+     ```sh
+     usermod -aG sudo test
+     ```
+
