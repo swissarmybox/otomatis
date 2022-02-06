@@ -1,49 +1,15 @@
 - hosts: all
   vars:
-    user: test
-    password: testpwd
     copy_local_key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_ed25519.pub') }}"
+  vars_prompt:
+    - name: user
+      prompt: Input username of user to be created
+      private: no
 
+    - name: password
+      prompt: Input password of user to be created
+      private: no
   tasks:
-  - name: ssh | disable root login
-    lineinfile:
-      dest: /etc/ssh/sshd_config
-      regexp: '^#?PermitRootLogin'
-      line: "PermitRootLogin no"
-      backup: yes
-
-  - name: ssh | disable password authentication
-    lineinfile:
-      dest: /etc/ssh/sshd_config
-      regexp: '^#?PasswordAuthentication'
-      line: "PasswordAuthentication no"
-      backup: yes
-
-  - name: hello
-    lineinfile:
-      dest: /root/hello
-      regexp: "world"
-      line: "koala"
-      backup: yes
-
-  - name: ssh | restart
-    systemd:
-      name: sshd
-      state: restarted
-
-
-  # - import_tasks: ../../_tasks/update.yml
-  # - import_tasks: ../../_tasks/unattended-upgrades.yml
-  # - import_tasks: ../../_tasks/firewall.yml
-  # - import_tasks: ../../_tasks/vim.yml
-  # - import_tasks: ../../_tasks/tmux.yml
-  # - import_tasks: ../../_tasks/fish.yml
-  # - import_tasks: ../../_tasks/nmap.yml
-  # - import_tasks: ../../_tasks/stow.yml
-  # - import_tasks: ../../_tasks/dotfiles.yml
-  # - import_tasks: ../../_tasks/nginx.yml
-  # - import_tasks: ../../_tasks/reboot.yml # Kills Docker container
-
-#   - shell: echo 'test'
-#     register: foo
-#   - debug: msg="the echo was {{ foo.stdout }}"
+  - import_tasks: ../../_tasks/updates.yml
+  - import_tasks: ../../_tasks/security.yml
+  - import_tasks: ../../_tasks/account.yml

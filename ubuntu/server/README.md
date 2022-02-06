@@ -1,6 +1,6 @@
 # Ubuntu for Server
 
-This directory is for playing around with setting up an Ubuntu server machine.
+Ansible Playbook to setup a remote Ubuntu dev machine.
 
 ## Prerequisites
 
@@ -26,7 +26,24 @@ This directory is for playing around with setting up an Ubuntu server machine.
    ssh root@<server-ip-address>
    ```
 
-ansible-playbook -i hosts.ini setup.yml -u root --ask-pass
+## Run Setup
 
+Enter the `setup` directory.
 
-/usr/bin/nmap
+2. Insert the hosts IP address by editing `hosts.ini` and also edit the `pre_setup.yml` `copy_local_key` to represent the SSH public certificate that you are going to transfer to the hosts
+
+2. Run ansible as root for pre-setup
+
+   This will ask for a user account and password that will be created. Please remember this username and password.
+
+   ```sh
+   ansible-playbook -i hosts.ini -u root pre_setup.yml
+   ```
+
+3. Run ansible as newly created user for setup
+
+  Use the newly created user and password.
+
+  ```sh
+  ansible-playbook -i hosts.ini --ask-become-pass -u <user> setup.yml
+  ```

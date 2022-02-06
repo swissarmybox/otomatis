@@ -2,8 +2,3 @@
   become: yes
   apt:
     name: tmux
-
-- name: tmux | dotfiles
-  ansible.builtin.shell:
-    chdir: ~/.otomatis/ubuntu/_dotfiles
-    cmd: stow -t ~ tmux

@@ -1,0 +1,4 @@
+- name: git | install
+  become: yes
+  apt:
+    name: git

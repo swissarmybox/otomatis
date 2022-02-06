@@ -13,8 +13,3 @@
   user:
     name: "{{ user }}"
     shell: /usr/bin/fish
-
-- name: fish | dotfiles
-  ansible.builtin.shell:
-    chdir: ~/.otomatis/ubuntu/_dotfiles
-    cmd: stow -t ~ fish

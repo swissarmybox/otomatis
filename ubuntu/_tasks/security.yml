@@ -1,1 +1,2 @@
+- import_tasks: ./components/ssh.yml
 - import_tasks: ./components/firewall.yml

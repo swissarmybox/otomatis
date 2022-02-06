@@ -2,8 +2,3 @@
   become: yes
   apt:
     name: vim
-
-- name: vim | dotfiles
-  ansible.builtin.shell:
-    chdir: ~/.otomatis/ubuntu/_dotfiles
-    cmd: stow -t ~ vim

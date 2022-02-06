@@ -1,0 +1,21 @@
+- name: dotfiles | clone otomatis repo
+  ansible.builtin.git:
+    repo: https://github.com/swissarmybox/otomatis.git
+    dest: ~/.otomatis
+    single_branch: yes
+    version: master
+
+- name: fish | dotfiles
+  ansible.builtin.shell:
+    chdir: ~/.otomatis/ubuntu/_dotfiles
+    cmd: stow -t ~ fish
+
+- name: tmux | dotfiles
+  ansible.builtin.shell:
+    chdir: ~/.otomatis/ubuntu/_dotfiles
+    cmd: stow -t ~ tmux
+
+- name: vim | dotfiles
+  ansible.builtin.shell:
+    chdir: ~/.otomatis/ubuntu/_dotfiles
+    cmd: stow -t ~ vim
