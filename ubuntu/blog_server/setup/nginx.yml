@@ -1,0 +1,36 @@
+- hosts: all
+  vars_prompt:
+    - name: user
+      prompt: Input nginx username of user to be created
+      private: no
+
+    - name: password
+      prompt: Input password of nginx user to be created
+      private: no
+  tasks:
+  - name: nginx | create non-sudo user 
+    become: yes
+    ansible.builtin.user:
+      name: "{{ user }}"
+      password: "{{ password | password_hash('sha512') }}"
+      state: present
+
+  - name: nginx | install
+    become: yes
+    apt:
+      name: nginx
+
+   - name: nginx | allow http/https connections
+     become: yes
+     community.general.ufw:
+       rule: allow
+       name: 'Nginx Full'
+       state: enabled
+
+  - name: nginx | start with systemd
+    become: yes
+    systemd:
+      name: nginx
+      state: started
+
+  - import_tasks: ../../_tasks/cleanup.yml

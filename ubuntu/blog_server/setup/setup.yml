@@ -1,0 +1,5 @@
+- hosts: all
+  vars:
+    user: "{{ ansible_user_id }}"
+  tasks:
+  - import_tasks: ../../_tasks/triumvirate.yml

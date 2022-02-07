@@ -4,8 +4,8 @@ Repository containing all my setup automations.
 
 ## Prerequisites
 
-* Docker
-* Ansible
+* Docker 20
+* Ansible 2.0
 
 ## Scenarios:
 * [ ] Setup Mac locally for development

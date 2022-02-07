@@ -1,0 +1,15 @@
+- hosts: all
+  vars:
+    copy_local_key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_ed25519.pub') }}"
+  vars_prompt:
+    - name: user
+      prompt: Input username of user to be created
+      private: no
+
+    - name: password
+      prompt: Input password of user to be created
+      private: no
+  tasks:
+  - import_tasks: ../../_tasks/updates.yml
+  - import_tasks: ../../_tasks/security.yml
+  - import_tasks: ../../_tasks/account.yml
