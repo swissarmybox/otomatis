@@ -1,0 +1,34 @@
+- name: Check if Stow is already installed
+  stat:
+    path: /opt/homebrew/bin/stow
+  register: stow_check
+
+- name: Failing if Stow is not installed
+  fail:
+    msg: Stow is missing
+  when: not stow_check.stat.exists
+
+- name: Remove existing dotfiles folder
+  file:
+    path: ~/dotfiles
+    state: absent
+
+- name: Copy dotfiles
+  copy:
+    src: dotfiles
+    dest: ~/
+
+- name: Stow fish dotfiles
+  shell:
+    chdir: ~/dotfiles
+    cmd: stow --adopt -t ~ fish
+
+- name: Stow tmux dotfiles
+  shell:
+    chdir: ~/dotfiles
+    cmd: stow --adopt -t ~ tmux
+
+- name: Stow vim dotfiles
+  ansible.builtin.shell:
+    chdir: ~/dotfiles
+    cmd: stow --adopt -t ~ vim

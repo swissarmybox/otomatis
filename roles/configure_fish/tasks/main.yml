@@ -1,0 +1,5 @@
+- name: Make fish default shell
+  become: true
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: /opt/homebrew/bin/fish

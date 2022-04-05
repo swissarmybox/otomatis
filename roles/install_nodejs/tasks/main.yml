@@ -1,0 +1,19 @@
+- name: Check if Volta is already installed
+  stat:
+    path: /opt/homebrew/bin/volta
+  register: volta_check
+
+- name: Failing if Volta is not installed
+  fail:
+    msg: Volta is required to install NodeJS
+  when: not volta_check.stat.exists
+
+- name: Check if NodeJS is already installed
+  stat:
+    path: ~/.volta/bin/node
+  register: node_check
+
+- name: Install NodeJS
+  ansible.builtin.shell:
+    cmd: volta install node
+  when: not node_check.stat.exists

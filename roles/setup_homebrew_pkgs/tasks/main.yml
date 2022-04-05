@@ -1,0 +1,29 @@
+- name: Check if Homebrew is already installed
+  stat:
+    path: /opt/homebrew/bin/brew
+  register: homebrew_check
+
+- name: Failing if Homebrew is not installed
+  fail:
+    msg: Homebrew is missing... please run ./bootstrap.sh
+  when: not homebrew_check.stat.exists
+
+- name: Updating Homebrew
+  homebrew:
+    update_homebrew: true
+  when: homebrew_check.stat.exists
+
+- name: Upgrading Homebrew Packages
+  homebrew:
+    upgrade_all: "{{ upgrade_homebrew_packages }}"
+  register: homebrew_upgrade
+  until: homebrew_upgrade is successful
+  when: homebrew_check.stat.exists
+
+- name: Installing Homebrew Packages
+  homebrew:
+    name: "{{ brew_packages }}"
+    state: present
+  register: homebrew_install
+  until: homebrew_install is successful
+  when: homebrew_check.stat.exists

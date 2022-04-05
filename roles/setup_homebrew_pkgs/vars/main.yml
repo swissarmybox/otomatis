@@ -1,0 +1,12 @@
+brew_packages:
+  - vim
+  - tmux
+  - fish
+  - stow
+  - git
+  - bat
+  - tree
+  - volta
+  - go
+
+upgrade_homebrew_packages: false

@@ -86,6 +86,5 @@ set backspace=indent,eol,start
 " Set autoindent when entering newline
 set autoindent
 
-" Ocaml stuff
-set rtp^="/Users/christiansakai/.opam/cs3110-2021fa/share/ocp-indent/vim"
-
+" Automatically scroll when active line is 8 lines before bottom of screen
+set scrolloff=8

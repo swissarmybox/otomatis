@@ -19,3 +19,8 @@ function proxy_off
   unset http_proxy=$PROXY
   unset https_proxy=$PROXY
 end
+
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"

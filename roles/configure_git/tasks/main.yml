@@ -1,0 +1,23 @@
+- name: Check if Git is already installed
+  stat:
+    path: /opt/homebrew/bin/git
+  register: git_check
+
+- name: Failing if Git is not installed
+  fail:
+    msg: Git is missing
+  when: not git_check.stat.exists
+
+- name: Setup Git name
+  git_config:
+    name: user.name
+    scope: global
+    value: "swissarmybox"
+  when: git_check.stat.exists
+
+- name: Setup Git email
+  git_config:
+    name: user.email
+    scope: global
+    value: "swissarmybox@protonmail.ch"
+  when: git_check.stat.exists
