@@ -88,3 +88,6 @@ set autoindent
 
 " Automatically scroll when active line is 8 lines before bottom of screen
 set scrolloff=8
+
+" Color scheme
+colorscheme everforest
