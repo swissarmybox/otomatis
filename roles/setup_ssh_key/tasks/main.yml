@@ -1,0 +1,6 @@
+- name: Generate an OpenSSH keypair 
+  community.crypto.openssh_keypair:
+    path: ~/.ssh/id_ed25519_test
+    type: ed25519
+    force: no
+    comment: swissarmybox@protonmail.ch

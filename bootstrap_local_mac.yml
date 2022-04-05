@@ -5,4 +5,5 @@
     - configure_git
     - configure_fish
     - setup_dotfiles
+    - setup_ssh_key
     - install_nodejs

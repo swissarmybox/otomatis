@@ -20,6 +20,8 @@ function proxy_off
   unset https_proxy=$PROXY
 end
 
+alias cat="bat"
+
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
