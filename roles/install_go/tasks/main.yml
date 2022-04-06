@@ -1,0 +1,28 @@
+# Install Go on Ubuntu and Mac
+#
+- name: Check if Homebrew is already installed on Mac
+  stat:
+    path: /opt/homebrew/bin/brew
+  register: homebrew_check
+  when: ansible_distribution == 'MacOSX'
+
+- name: Failing if Homebrew is not installed on Mac
+  fail:
+    msg: Homebrew is missing
+  when: ansible_distribution == 'MacOSX' and not homebrew_check.stat.exists
+
+- name: Install Go on Mac
+  homebrew:
+    name: go
+    state: present
+  when: ansible_distribution == 'MacOSX' and homebrew_check.stat.exists
+
+- name: Install Go on Ubuntu
+  become: true
+  shell:
+    cmd: >
+      cd ~ &&
+      curl -OL https://golang.org/dl/go1.18.linux-amd64.tar.gz &&
+      rm -rf /usr/local/go &&
+      tar -C /usr/local -xzf go1.18.linux-amd64.tar.gz
+  when: ansible_distribution == 'Ubuntu'

@@ -1,29 +1,32 @@
-- name: Check if Homebrew is already installed
+# Setup Homebrew for Mac
+
+- name: Check if Homebrew is already installed on Mac
   stat:
     path: /opt/homebrew/bin/brew
   register: homebrew_check
+  when: ansible_distribution == 'MacOSX'
 
-- name: Failing if Homebrew is not installed
+- name: Failing if Homebrew is not installed on Mac
   fail:
     msg: Homebrew is missing... please run ./bootstrap.sh
-  when: not homebrew_check.stat.exists
+  when: ansible_distribution == 'MacOSX' and not homebrew_check.stat.exists
 
-- name: Updating Homebrew
+- name: Updating Homebrew on Mac
   homebrew:
     update_homebrew: true
-  when: homebrew_check.stat.exists
+  when: ansible_distribution == 'MacOSX' and homebrew_check.stat.exists
 
-- name: Upgrading Homebrew Packages
+- name: Upgrading Homebrew Packages on Mac
   homebrew:
     upgrade_all: "{{ upgrade_homebrew_packages }}"
   register: homebrew_upgrade
   until: homebrew_upgrade is successful
-  when: homebrew_check.stat.exists
+  when: ansible_distribution == 'MacOSX' and homebrew_check.stat.exists
 
-- name: Installing Homebrew Packages
+- name: Installing Homebrew Packages on Mac
   homebrew:
     name: "{{ brew_packages }}"
     state: present
   register: homebrew_install
   until: homebrew_install is successful
-  when: homebrew_check.stat.exists
+  when: ansible_distribution == 'MacOSX' and homebrew_check.stat.exists

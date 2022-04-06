@@ -4,6 +4,7 @@
     - setup_homebrew_pkgs
     - configure_git
     - configure_fish
-    - setup_dotfiles
     - setup_ssh_key
+    - install_volta
     - install_nodejs
+    - setup_dotfiles

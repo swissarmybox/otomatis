@@ -1,0 +1,23 @@
+# Install Volta to manage NodeJS on Ubuntu and Mac
+#
+- name: Check if Homebrew is already installed on Mac
+  stat:
+    path: /opt/homebrew/bin/brew
+  register: homebrew_check
+  when: ansible_distribution == 'MacOSX'
+
+- name: Failing if Homebrew is not installed on Mac
+  fail:
+    msg: Homebrew is missing
+  when: ansible_distribution == 'MacOSX' and not homebrew_check.stat.exists
+
+- name: Install Volta on Mac
+  homebrew:
+    name: volta
+    state: present
+  when: ansible_distribution == 'MacOSX' and homebrew_check.stat.exists
+
+- name: Install Volta on Ubuntu
+  shell:
+    cmd: curl https://get.volta.sh | /usr/bin/bash
+  when: ansible_distribution == 'Ubuntu'

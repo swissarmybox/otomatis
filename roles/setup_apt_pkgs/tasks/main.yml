@@ -1,0 +1,5 @@
+- name: Install apt packages on Ubuntu
+  become: yes
+  apt:
+    name: "{{ apt_packages }}"
+  when: ansible_distribution == 'Ubuntu'

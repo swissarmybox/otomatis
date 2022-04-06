@@ -1,0 +1,49 @@
+# Harden firewall on Ubuntu
+
+- name: Install UFW on Ubuntu
+  become: yes
+  apt:
+    name: ufw
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Reject every incoming request on Ubuntu
+  become: yes
+  community.general.ufw:
+    direction: incoming
+    default: deny
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Allow every outgoing request on Ubuntu
+  become: yes
+  community.general.ufw:
+    direction: outgoing
+    default: allow
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Limit brute force SSH on Ubuntu
+  become: yes
+  community.general.ufw:
+    rule: limit
+    port: ssh
+    proto: tcp
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Disable ping on Ubuntu
+  become: yes
+  lineinfile: dest=/etc/ufw/before.rules regexp="ufw-before-input -p icmp --icmp-type {{ item }}" line="-A ufw-before-input -p icmp --icmp-type {{ item }} -j DROP" backup=yes
+  with_items:
+    - echo-request
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Disable IPV6 ping on Ubuntu
+  become: yes
+  lineinfile: dest=/etc/ufw/before6.rules regexp="ufw6-before-input -p icmpv6 --icmpv6-type {{ item }}" line="-A ufw6-before-input -p icmpv6 --icmpv6-type {{ item }} -j DROP" backup=yes
+  with_items:
+    - echo-request
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Enable UFW on Ubuntu
+  become: yes
+  community.general.ufw:
+    state: enabled
+  when: ansible_distribution == 'Ubuntu'

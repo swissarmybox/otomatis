@@ -1,0 +1,9 @@
+# Update and upgrade Apt on Unbuntu
+
+- name: Run apt update and upgrade on Ubuntu
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
+    cache_valid_time: 86400 # One day
+  when: ansible_distribution == 'Ubuntu'

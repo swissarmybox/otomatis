@@ -1,0 +1,13 @@
+- hosts: ubuntu_dev
+  roles:
+    - update_upgrade_pkgs
+    - enable_unattended_upgrades
+    - setup_apt_pkgs
+    - harden_firewall
+    - configure_git
+    - configure_fish
+    - setup_ssh_key
+    - install_volta
+    - install_nodejs
+    - install_go
+    - setup_dotfiles

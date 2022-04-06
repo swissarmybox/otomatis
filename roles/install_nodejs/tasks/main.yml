@@ -1,7 +1,16 @@
-- name: Check if Volta is already installed
+# Install NodeJS using Volta on Ubuntu and Mac
+
+- name: Check if Volta is already installed on Mac
   stat:
     path: /opt/homebrew/bin/volta
   register: volta_check
+  when: ansible_distribution == 'MacOSX'
+
+- name: Check if Volta is already installed on Ubuntu
+  stat:
+    path: ~/.volta/bin/volta
+  register: volta_check
+  when: ansible_distribution == 'Ubuntu'
 
 - name: Failing if Volta is not installed
   fail:

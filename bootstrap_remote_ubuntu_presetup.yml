@@ -1,0 +1,15 @@
+- hosts: ubuntu_dev
+  vars:
+    ssh_pub_key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_ed25519.pub') }}"
+  vars_prompt:
+    - name: user
+      prompt: Input username of user to be created
+      private: no
+
+    - name: password
+      prompt: Input password of user to be created
+      private: no
+
+  roles:
+    - harden_ssh_login
+    - create_non_root_user

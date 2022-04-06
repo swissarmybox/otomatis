@@ -1,7 +1,16 @@
-- name: Check if Stow is already installed
+# Setup dotfiles using Stow on Mac and Ubuntu
+
+- name: Check if Stow is already installed on Mac
   stat:
     path: /opt/homebrew/bin/stow
   register: stow_check
+  when: ansible_distribution == 'MacOSX'
+
+- name: Check if Stow is already installed on Ubuntu
+  stat:
+    path: /usr/bin/stow
+  register: stow_check
+  when: ansible_distribution == 'Ubuntu'
 
 - name: Failing if Stow is not installed
   fail:
@@ -18,6 +27,11 @@
     src: dotfiles
     dest: ~/
 
+- name: Run a template
+  template:
+    src: config.fish.j2
+    dest: ~/dotfiles/fish/.config/fish/config.fish
+
 - name: Stow fish dotfiles
   shell:
     chdir: ~/dotfiles
@@ -29,6 +43,6 @@
     cmd: stow --adopt -t ~ tmux
 
 - name: Stow vim dotfiles
-  ansible.builtin.shell:
+  shell:
     chdir: ~/dotfiles
     cmd: stow --adopt -t ~ vim

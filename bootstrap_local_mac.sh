@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# Install Homebrew and Ansible
+
 curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
 
 brew update
