@@ -8,4 +8,4 @@ brew update
 brew upgrade
 brew install ansible
 
-ansible-playbook setup_mac.yml --ask-become-pass
+ansible-playbook bootstrap_local_mac.yml --ask-become-pass
