@@ -1,4 +1,5 @@
 apt_packages:
+  - curl
   - vim
   - tmux
   - stow
