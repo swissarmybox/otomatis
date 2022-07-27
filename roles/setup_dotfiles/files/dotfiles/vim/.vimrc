@@ -2,8 +2,6 @@
 " ***** Visual *****
 " Enable syntax highlighting
 syntax on
-syntax enable
-filetype plugin indent on
 
 " Disable regexp syntax highlight to avoid performance issues
 " in syntax highlighting large files
@@ -62,12 +60,17 @@ xmap <C-s> <esc>:w<CR>
 nmap k gk
 nmap j gj
 
+" Enable file detection and its plugin
+filetype on
+filetype plugin on
+
+" Set comment string on specific languages
 " See :set filetype? to check what is current filetype
 autocmd FileType javascript,typescript setlocal commentstring=//\ %s
 autocmd FileType javascriptreact,typescriptreact setlocal commentstring={/*\ %s\ */}
 
-" Use TAB to complete when typing words, else inserts TABs as usual.
-" https://vim.fandom.com/wiki/Autocomplete_with_TAB_when_typing_words
+" " Use TAB to complete when typing words, else inserts TABs as usual.
+" " https://vim.fandom.com/wiki/Autocomplete_with_TAB_when_typing_words
 function! Tab_Or_Complete()
   if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
     return "\<C-N>"
@@ -84,7 +87,19 @@ set clipboard^=unnamed,unnamedplus
 set backspace=indent,eol,start
 
 " Set autoindent when entering newline
+filetype indent on
 set autoindent
 
-" Automatically scroll when active line is 8 lines before bottom of screen
+" " Automatically scroll when active line is 8 lines before bottom of screen
 set scrolloff=8
+
+colorscheme everforest
+
+" You might have to force true color when using regular vim inside tmux as the
+" colorscheme can appear to be grayscale with "termguicolors" option enabled.
+if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+
+set termguicolors
