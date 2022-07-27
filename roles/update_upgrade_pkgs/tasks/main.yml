@@ -2,8 +2,8 @@
 
 - name: Run apt update and upgrade on Ubuntu
   become: true
-  apt:
-    upgrade: yes
-    update_cache: yes
+  ansible.builtin.apt:
+    upgrade: true
+    update_cache: true
     cache_valid_time: 86400 # One day
   when: ansible_distribution == 'Ubuntu'

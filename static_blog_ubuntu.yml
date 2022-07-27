@@ -1,0 +1,12 @@
+- hosts: static_blog
+  name: Bootstrap remote Ubuntu as a static web server
+  roles:
+    - update_upgrade_pkgs
+    - enable_unattended_upgrades
+    - setup_apt_pkgs_blog
+    - harden_firewall
+    - setup_nginx
+
+  #   create apps folder
+  #   creating web root directory, the mode is 0755 /var/www/html
+  #   create indx.html file /var/www/html/index.html owner root group root mode 06444

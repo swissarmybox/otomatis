@@ -1,13 +1,13 @@
 # Install Fish shell on Ubuntu and Mac
 
 - name: Check if Homebrew is already installed on Mac
-  stat:
+  ansible.builtin.stat:
     path: /opt/homebrew/bin/brew
   register: homebrew_check
   when: ansible_distribution == 'MacOSX'
 
 - name: Failing if Homebrew is not installed on Mac
-  fail:
+  ansible.builtin.fail:
     msg: Homebrew is missing
   when: ansible_distribution == 'MacOSX' and not homebrew_check.stat.exists
 
@@ -18,25 +18,25 @@
   when: ansible_distribution == 'MacOSX' and homebrew_check.stat.exists
 
 - name: Adding Fish repo on Ubuntu
-  become: yes
+  become: true
   ansible.builtin.apt_repository:
     repo: ppa:fish-shell/release-3
 
 - name: Installing Fish on Ubuntu
-  become: yes
-  apt:
+  become: true
+  ansible.builtin.apt:
     name: fish
 
 - name: Make fish default shell on Mac
   become: true
-  user:
+  ansible.builtin.user:
     name: "{{ ansible_user_id }}"
     shell: /opt/homebrew/bin/fish
   when: ansible_distribution == 'MacOSX'
 
 - name: Make fish as default shell on Ubuntu
   become: true
-  user:
+  ansible.builtin.user:
     name: "{{ ansible_user_id }}"
     shell: /usr/bin/fish
   when: ansible_distribution == 'Ubuntu'

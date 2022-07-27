@@ -1,4 +1,5 @@
 - hosts: localhost
+  name: Bootstrap local Mac as a development machine
   connection: local
   roles:
     - setup_homebrew_pkgs

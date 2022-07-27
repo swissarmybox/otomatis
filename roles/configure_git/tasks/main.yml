@@ -1,19 +1,19 @@
 # Setup Git name and email for Mac and Ubuntu
 
 - name: Check if Git is already installed on Mac
-  stat:
+  ansible.builtin.stat:
     path: /opt/homebrew/bin/git
   register: git_check
   when: ansible_distribution == 'MacOSX'
 
 - name: Check if Git is already installed on Ubuntu
-  stat:
+  ansible.builtin.stat:
     path: /usr/bin/git
   register: git_check
   when: ansible_distribution == 'Ubuntu'
 
 - name: Failing if Git is not installed
-  fail:
+  ansible.builtin.fail:
     msg: Git is missing
   when: not git_check.stat.exists
 

@@ -1,4 +1,5 @@
-- hosts: ubuntu_dev
+- hosts: static_blog
+  name: Bootstrap remote Ubuntu as a static web server
   vars:
     ssh_pub_key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_ed25519.pub') }}"
   vars_prompt:

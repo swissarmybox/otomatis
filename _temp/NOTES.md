@@ -160,8 +160,6 @@
   dig mydomain.com
   ```
 
-
-
 # Enable Nginx
 
 1. Install Nginx

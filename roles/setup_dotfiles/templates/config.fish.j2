@@ -21,7 +21,7 @@ export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
 {% if ansible_distribution == "MacOSX" %}
-alias cat="opt/homebrew/bin/bat"
+alias cat="/opt/homebrew/bin/bat"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 {% elif ansible_distribution == "Ubuntu" %}
 # Prevent crash by Ctrl-S Ctrl-Q when this shell is being accessed by ssh

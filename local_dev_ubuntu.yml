@@ -1,4 +1,5 @@
 - hosts: localhost
+  name: Bootstrap local Ubuntu as a development machine
   connection: local
   roles:
     - install_openssh

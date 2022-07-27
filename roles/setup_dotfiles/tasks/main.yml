@@ -1,48 +1,53 @@
 # Setup dotfiles using Stow on Mac and Ubuntu
 
 - name: Check if Stow is already installed on Mac
-  stat:
+  ansible.builtin.stat:
     path: /opt/homebrew/bin/stow
   register: stow_check
   when: ansible_distribution == 'MacOSX'
 
 - name: Check if Stow is already installed on Ubuntu
-  stat:
+  ansible.builtin.stat:
     path: /usr/bin/stow
   register: stow_check
   when: ansible_distribution == 'Ubuntu'
 
 - name: Failing if Stow is not installed
-  fail:
+  ansible.builtin.fail:
     msg: Stow is missing
   when: not stow_check.stat.exists
 
 - name: Remove existing dotfiles folder
-  file:
+  ansible.builtin.file:
     path: ~/dotfiles
     state: absent
 
 - name: Copy dotfiles
-  copy:
+  ansible.builtin.copy:
     src: dotfiles
     dest: ~/
+    mode: '640'
 
 - name: Run a template
-  template:
+  ansible.builtin.template:
     src: config.fish.j2
     dest: ~/dotfiles/fish/.config/fish/config.fish
+    mode: '640'
 
 - name: Stow fish dotfiles
-  shell:
+  ansible.builtin.command:
     chdir: ~/dotfiles
     cmd: stow --adopt -t ~ fish
+  changed_when: false
 
 - name: Stow tmux dotfiles
-  shell:
+  ansible.builtin.command:
     chdir: ~/dotfiles
     cmd: stow --adopt -t ~ tmux
+  changed_when: false
 
 - name: Stow vim dotfiles
-  shell:
+  ansible.builtin.command:
     chdir: ~/dotfiles
     cmd: stow --adopt -t ~ vim
+  changed_when: false

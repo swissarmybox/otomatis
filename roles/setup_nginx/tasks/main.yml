@@ -1,0 +1,8 @@
+# Setup Nginx
+
+- name: Start Nginx service
+  ansible.builtin.service:
+    name: nginx
+    state: restarted
+    enable: true
+  when: ansible_distribution == 'Ubuntu'

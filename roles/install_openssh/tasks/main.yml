@@ -1,11 +1,11 @@
 - name: Install Open SSH client
-  become: yes
-  apt:
+  become: true
+  ansible.builtin.apt:
     name: openssh-client
   when: ansible_distribution == 'Ubuntu'
 
 - name: Install Open SSH server
-  become: yes
-  apt:
+  become: true
+  ansible.builtin.apt:
     name: openssh-server
   when: ansible_distribution == 'Ubuntu'

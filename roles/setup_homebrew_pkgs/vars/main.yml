@@ -4,7 +4,14 @@ brew_packages:
   - stow
   - git
   - bat
+  - exa
+  - ripgrep
   - tree
   - go
+  - ansible-lint
+
+brew_cask_packages:
+  - alacritty
+  - firefox
 
 upgrade_homebrew_packages: false

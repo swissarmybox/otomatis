@@ -1,3 +1,0 @@
-- name: volta | install
-  ansible.builtin.shell:
-    cmd: curl https://get.volta.sh | /usr/bin/bash

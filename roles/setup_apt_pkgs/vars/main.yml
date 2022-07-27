@@ -5,5 +5,8 @@ apt_packages:
   - stow
   - git
   - bat
+  - exa
+  - ripgrep
   - tree
   - ufw
+  - ansible-lint

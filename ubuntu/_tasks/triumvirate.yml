@@ -1,6 +1,0 @@
-- import_tasks: ./components/git.yml
-- import_tasks: ./components/stow.yml
-- import_tasks: ./components/vim.yml
-- import_tasks: ./components/tmux.yml
-- import_tasks: ./components/fish.yml
-- import_tasks: ./components/dotfiles.yml

@@ -1,28 +1,28 @@
 # Install NodeJS using Volta on Ubuntu and Mac
 
 - name: Check if Volta is already installed on Mac
-  stat:
+  ansible.builtin.stat:
     path: /opt/homebrew/bin/volta
   register: volta_check
   when: ansible_distribution == 'MacOSX'
 
 - name: Check if Volta is already installed on Ubuntu
-  stat:
+  ansible.builtin.stat:
     path: ~/.volta/bin/volta
   register: volta_check
   when: ansible_distribution == 'Ubuntu'
 
 - name: Failing if Volta is not installed
-  fail:
+  ansible.builtin.fail:
     msg: Volta is required to install NodeJS
   when: not volta_check.stat.exists
 
 - name: Check if NodeJS is already installed
-  stat:
+  ansible.builtin.stat:
     path: ~/.volta/bin/node
   register: node_check
 
 - name: Install NodeJS
-  ansible.builtin.shell:
+  ansible.builtin.command:
     cmd: volta install node
   when: not node_check.stat.exists

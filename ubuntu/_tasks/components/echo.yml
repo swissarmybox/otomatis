@@ -1,7 +1,0 @@
-- name: echo | register
-  register: foo
-  ansible.builtin.shell:
-    cmd: curl https://get.volta.sh | /usr/bin/bash
-
-- name: echo | spit
-  debug: msg="the echo was {{ foo.stdout }}"

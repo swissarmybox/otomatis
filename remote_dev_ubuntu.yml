@@ -1,4 +1,5 @@
 - hosts: ubuntu_dev
+  name: Bootstrap remote Ubuntu as a development machine
   roles:
     - update_upgrade_pkgs
     - enable_unattended_upgrades

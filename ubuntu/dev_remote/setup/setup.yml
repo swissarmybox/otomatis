@@ -1,7 +1,0 @@
-- hosts: all
-  vars:
-    user: "{{ ansible_user_id }}"
-  tasks:
-  - import_tasks: ../../_tasks/triumvirate.yml
-  - import_tasks: ../../_tasks/tools.yml
-  - import_tasks: ../../_tasks/cleanup.yml

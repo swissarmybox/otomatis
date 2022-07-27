@@ -1,13 +1,13 @@
 # Setup Homebrew for Mac
 
 - name: Check if Homebrew is already installed on Mac
-  stat:
+  ansible.builtin.stat:
     path: /opt/homebrew/bin/brew
   register: homebrew_check
   when: ansible_distribution == 'MacOSX'
 
 - name: Failing if Homebrew is not installed on Mac
-  fail:
+  ansible.builtin.fail:
     msg: Homebrew is missing... please run ./bootstrap.sh
   when: ansible_distribution == 'MacOSX' and not homebrew_check.stat.exists
 
@@ -30,3 +30,12 @@
   register: homebrew_install
   until: homebrew_install is successful
   when: ansible_distribution == 'MacOSX' and homebrew_check.stat.exists
+
+- name: Installing Homebrew Cask Packages on Mac
+  homebrew_cask:
+    name: "{{ brew_cask_packages }}"
+    state: present
+  register: homebrew_cask_install
+  until: homebrew_cask_install is successful
+  when: ansible_distribution == 'MacOSX' and homebrew_check.stat.exists
+

@@ -1,0 +1,16 @@
+- hosts: ubuntu_dev
+  name: Bootstrap remote Ubuntu as a development machine
+  vars:
+    ssh_pub_key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_ed25519.pub') }}"
+  vars_prompt:
+    - name: user
+      prompt: Input username of user to be created
+      private: false
+
+    - name: password
+      prompt: Input password of user to be created
+      private: false
+
+  roles:
+    - harden_ssh_login
+    - create_non_root_user

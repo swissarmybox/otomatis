@@ -1,13 +1,13 @@
 # Enable unattended upgrades on Ubuntu
 
 - name: Install unattended-upgrades on Ubuntu
-  become: yes
-  apt:
+  become: true
+  ansible.builtin.apt:
     name: unattended-upgrades
   when: ansible_distribution == 'Ubuntu'
 
 - name: Enable unattended-upgrades on Ubuntu
-  become: yes
-  shell:
+  become: true
+  ansible.builtin.command:
     cmd: dpkg-reconfigure -f noninteractive unattended-upgrades
   when: ansible_distribution == 'Ubuntu'

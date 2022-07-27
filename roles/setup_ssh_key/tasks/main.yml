@@ -1,8 +1,8 @@
 # Generate an OpenSSH keypair
 
-- name: Generate an OpenSSH keypair 
+- name: Generate an OpenSSH keypair
   community.crypto.openssh_keypair:
     path: ~/.ssh/id_ed25519
     type: ed25519
-    force: no
+    force: false
     comment: swissarmybox@protonmail.ch
