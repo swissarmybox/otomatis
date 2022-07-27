@@ -34,6 +34,12 @@
     dest: ~/dotfiles/fish/.config/fish/config.fish
     mode: '640'
 
+- name: Stow alacritty dotfiles
+  ansible.builtin.command:
+    chdir: ~/dotfiles
+    cmd: stow --adopt -t ~ alacritty
+  changed_when: false
+
 - name: Stow fish dotfiles
   ansible.builtin.command:
     chdir: ~/dotfiles
